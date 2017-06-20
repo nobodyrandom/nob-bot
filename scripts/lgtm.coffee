@@ -87,7 +87,7 @@ notify = (res, msg) ->
   if res and /Response/.test res.constructor.name
     return res.send msg
   if room
-    return therobot.messageRoom room, msg
+    return robot.messageRoom room, msg
 
 module.exports = (robot) ->
   therobot = robot
