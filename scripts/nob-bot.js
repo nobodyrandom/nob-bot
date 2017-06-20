@@ -9,7 +9,7 @@
 'use strict';
 
 var path = require('path');
-var slackGitHubIssues = require('..');
+var slackGitHubIssues = require('slack-github-issues');
 
 function configParams() {
     var params = {updates: {}};
