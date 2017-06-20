@@ -1,5 +1,5 @@
 {
-  "githubUser": "nobodyrandom",
+  "githubUser": "Developers-Foundation",
   "githubApiToken": "<github-api-token>",
   "slackApiToken": "<slack-api-token>",
   "githubTimeout": 5000,
@@ -8,7 +8,7 @@
   "rules": [
     {
       "reactionName": "book",
-      "githubRepository": "slack-github-issues"
+      "githubRepository": "dolly-v2"
     }
   ]
 }
