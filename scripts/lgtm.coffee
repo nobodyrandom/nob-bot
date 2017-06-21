@@ -38,8 +38,7 @@ ignoreList = []
 # List all pull requests assigned to the bot.
 listPullRequests = (res) ->
   github.issues.getAll {}, (err, issues) ->
-    return if not issues.length
-#    return notify res, "No pull requests have been assigned to me." if not issues.length
+    return notify res, "No pull requests have been assigned to me." if not issues.length
     pullRequests = issues.map (issue) ->
       if issue.pull_request and issue.state is "open"
         return "https://github.com/#{issue.repository.owner.login}/#{issue.repository.name}/pull/#{issue.number}"
@@ -49,7 +48,8 @@ listPullRequests = (res) ->
 # Iterate assigned pull requests and merge those with 2 or more comment approvals.
 mergePullRequests = (res) ->
   github.issues.getAll {}, (err, issues) ->
-    return notify res, "No pull requests have been assigned to me." if not issues.length
+    return if not issues.length
+    #return notify res, "No pull requests have been assigned to me." if not issues.length
     issues.forEach (issue) ->
 # Abort if it's closed or not a pull request.
       return if not issue.pull_request or issue.state != "open"
