@@ -18,7 +18,7 @@
 github = require 'github'
 regexEscape = require 'regex-escape'
 
-token = process.env.HUBOT_LGTM_GITHUB_TOKEN
+token = process.env.HUBOT_GITHUB_TOKEN
 room = process.env.HUBOT_LGTM_NOTIFICATION_ROOM
 ignoreFailures = process.env.HUBOT_LGTM_IGNORE_FAILURES
 approvals = process.env.HUBOT_LGTM_APPROVAL_MSGS || ":shipit:,:+1:,👍,LGTM"
@@ -38,7 +38,8 @@ ignoreList = []
 # List all pull requests assigned to the bot.
 listPullRequests = (res) ->
   github.issues.getAll {}, (err, issues) ->
-    return notify res, "No pull requests have been assigned to me." if not issues.length
+    return if not issues.length
+#    return notify res, "No pull requests have been assigned to me." if not issues.length
     pullRequests = issues.map (issue) ->
       if issue.pull_request and issue.state is "open"
         return "https://github.com/#{issue.repository.owner.login}/#{issue.repository.name}/pull/#{issue.number}"
@@ -87,7 +88,7 @@ notify = (res, msg) ->
   if res and /Response/.test res.constructor.name
     return res.send msg
   if room
-    return robot.messageRoom room, msg
+    return therobot.messageRoom room, msg
 
 module.exports = (robot) ->
   therobot = robot
